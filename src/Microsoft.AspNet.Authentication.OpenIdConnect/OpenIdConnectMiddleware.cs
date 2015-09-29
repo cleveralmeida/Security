@@ -120,7 +120,8 @@ namespace Microsoft.AspNet.Authentication.OpenIdConnect
                         Options.MetadataAddress += ".well-known/openid-configuration";
                     }
 
-                    Options.ConfigurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(Options.MetadataAddress, new OpenIdConnectConfigurationRetriever(), Backchannel);
+                    Options.ConfigurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(Options.MetadataAddress,
+                        new OpenIdConnectConfigurationRetriever(), new HttpDocumentRetriever(Backchannel) { RequireHttps = Options.RequireHttpsMetadata });
                 }
             }
         }

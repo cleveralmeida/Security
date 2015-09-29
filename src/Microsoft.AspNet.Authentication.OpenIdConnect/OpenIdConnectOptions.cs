@@ -106,6 +106,12 @@ namespace Microsoft.AspNet.Authentication.OpenIdConnect
         public string ClientSecret { get; set; }
 
         /// <summary>
+        /// Gets or sets if https is required for the metadata address or authority.
+        /// The default is true. This should only be disabled in development environments.
+        /// </summary>
+        public bool RequireHttpsMetadata { get; set; } = true;
+
+        /// <summary>
         /// Configuration provided directly by the developer. If provided, then MetadataAddress and the Backchannel properties
         /// will not be used. This information should not be updated during request processing.
         /// </summary>
