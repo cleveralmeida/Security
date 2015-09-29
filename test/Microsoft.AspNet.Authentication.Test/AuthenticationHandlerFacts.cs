@@ -102,10 +102,13 @@ namespace Microsoft.AspNet.Authentication
                 return handler;
             }
 
-            protected override Task<AuthenticationTicket> HandleAuthenticateAsync()
+            protected override Task<AuthenticateResult> HandleAuthenticateAsync()
             {
                 AuthCount++;
-                return Task.FromResult(new AuthenticationTicket(null, null));
+                return Task.FromResult(new AuthenticateResult()
+                {
+                    Ticket = new AuthenticationTicket(null, null)
+                });
             }
 
         }
@@ -124,9 +127,9 @@ namespace Microsoft.AspNet.Authentication
                 return handler;
             }
 
-            protected override Task<AuthenticationTicket> HandleAuthenticateAsync()
+            protected override Task<AuthenticateResult> HandleAuthenticateAsync()
             {
-                return Task.FromResult<AuthenticationTicket>(null);
+                return Task.FromResult(new AuthenticateResult());
             }
         }
 
@@ -155,9 +158,9 @@ namespace Microsoft.AspNet.Authentication
                 return handler;
             }
 
-            protected override Task<AuthenticationTicket> HandleAuthenticateAsync()
+            protected override Task<AuthenticateResult> HandleAuthenticateAsync()
             {
-                return Task.FromResult<AuthenticationTicket>(null);
+                return Task.FromResult(new AuthenticateResult());
             }
         }
 
